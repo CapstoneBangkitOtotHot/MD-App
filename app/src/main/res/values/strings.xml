@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FreshMeter</string>
+    <string name="freshmeter">FreshMeter</string>
+    <string name="books">Books</string>
+    <string name="more">More</string>
+    <string name="log_in">Log In</string>
+    <string name="johndoe_exemple_com">Johndoe@exemple.com</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="paassword">Paassword</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register">Register</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_account">Already Have Account?</string>
+    <string name="get_started">Get Started</string>
+    <string name="camera">camera</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="back">Back</string>
+</resources>
