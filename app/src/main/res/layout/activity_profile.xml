@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraActivity">
+    tools:context=".ProfileActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -20,67 +20,73 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/BackButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:background="#00FFFFFF"
-                android:hint="@string/back"
-                android:foreground="@drawable/left_arrow_white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
-                android:id="@+id/TakePhoto"
+                android:id="@+id/textView"
                 android:layout_width="181dp"
                 android:layout_height="38dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/take_photo"
+                android:text="@string/profile"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/BackButton"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageViewGallery"
+        android:id="@+id/imageView"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:srcCompat="@drawable/gallery" />
+        app:srcCompat="@drawable/profile" />
 
-    <LinearLayout
-        android:layout_width="300dp"
+    <Button
+        android:id="@+id/EditPhotoButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:background="#00FFFFFF"
+        android:text="@string/edit_photo"
+        android:textColor="#90FA6B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewGallery">
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <Button
-            android:id="@+id/ButtonAnalyze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#2AB655"
-            android:text="Analyze" />
+    <EditText
+        android:id="@+id/EditUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:drawableBottom="@color/black"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:singleLine="false"
+        android:textAlignment="center"
+        android:textColor="#2AB655"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditPhotoButton" />
 
-        <Button
-            android:id="@+id/ButtonGallery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#2AB655"
-            android:text="Open Gallery" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/LogOutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="#00FFFFFF"
+        android:text="@string/log_out"
+        android:textColor="#FD3B3B"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,15 +21,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/Profile"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+            <Button
+                android:id="@+id/ProfileButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
+                android:background="#02FFFFFF"
+                android:hint="@string/profile"
+                android:foreground="@drawable/profile_user"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile_user" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/FreshMeter"
