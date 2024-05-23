@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class Login : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var moveTologinButton: Button
     private lateinit var moveToregisterButton: Button
 
@@ -29,7 +29,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun onClickMoveToRegister() {
-        val intent = Intent(this, Register::class.java)
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
 }

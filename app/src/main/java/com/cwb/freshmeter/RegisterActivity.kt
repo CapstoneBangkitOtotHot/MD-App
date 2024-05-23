@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class Register : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     private lateinit var moveToLoginButton: Button
 
@@ -19,7 +19,7 @@ class Register : AppCompatActivity() {
     }
 
     private fun onClickMoveToLogin() {
-        val intent = Intent(this, Login::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 }
