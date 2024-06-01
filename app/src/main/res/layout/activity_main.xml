@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ui.main.MainActivity"
     >
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="67dp"
-        android:background="#2AB655"
+        android:background="@color/green"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
-                android:background="#02FFFFFF"
+                android:background="@color/transparent"
                 android:hint="@string/profile"
                 android:foreground="@drawable/profile_user"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +43,7 @@
                 android:text="@string/freshmeter"
                 android:textColor="@color/white"
                 android:textSize="25sp"
+                android:fontFamily="@font/montserrat"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +56,7 @@
         android:layout_width="320dp"
         android:layout_height="210dp"
         android:layout_marginTop="16dp"
-        android:background="#00FFFFFF"
+        android:background="@color/transparent"
         android:foreground="@drawable/get_started"
         android:text="@string/get_started"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -80,52 +81,41 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/books"
+                android:id="@+id/articles_title"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="@string/books"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/articles"
                 android:textAlignment="center"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@string/more"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/right_arrow_green"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/right_arrow_green"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/right_arrow_green"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_articles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
     <Button
         android:id="@+id/camera"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:background="#00FFFFFF"
-        android:hint="@string/camera"
+        android:background="@color/transparent"
         android:foreground="@drawable/camera"
+        android:hint="@string/camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

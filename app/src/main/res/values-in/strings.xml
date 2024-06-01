@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FreshMeter</string>
+    <string name="articles">Artikel</string>
+    <string name="more">Tampilkan Lebih</string>
+    <string name="login">Masuk</string>
+    <string name="password">Kata Sandi</string>
+    <string name="forgot_password">Lupa Sandi?</string>
+    <string name="register">Daftar</string>
+    <string name="re_enter_password">Ketik Ulang Sandi</string>>
+    <string name="confirm_password">Konfirmasi Sandi</string>
+    <string name="already_have_account">Sudah Punya Akun?</string>
+    <string name="take_photo">Ambil Gambar</string>
+    <string name="log_out">Keluar</string>
+    <string name="username">Nama</string>
+    <string name="edit_photo">Ubah Gambar</string>
+    <string name="profile">Profil</string>
+    <string name="open_gallery">"Buka Galeri"</string>
+    <string name="analyze">Analisa</string>
+    <string name="dark_mode">Mode Gelap</string>
+    <string name="change_language">Ganti Bahasa</string>
+</resources>

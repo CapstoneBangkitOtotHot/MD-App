@@ -34,9 +34,11 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/log_in"
+                android:text="@string/login"
                 android:textAlignment="center"
                 android:textSize="25sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +63,8 @@
             android:layout_height="25dp"
             android:layout_marginBottom="8dp"
             android:text="@string/email"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat"/>
 
         <EditText
             android:id="@+id/emailEditText"
@@ -72,7 +75,8 @@
             android:hint="@string/johndoe_exemple_com"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/montserrat"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -80,7 +84,8 @@
             android:layout_height="25dp"
             android:layout_marginBottom="8dp"
             android:text="@string/password"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat"/>
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -92,16 +97,18 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:inputType="textPassword"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:fontFamily="@font/montserrat"/>
 
         <Button
             android:id="@+id/SubmitLoginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#2AB655"
+            android:backgroundTint="@color/green"
             android:onClick="onLoginButtonClicked"
             android:text="@string/login"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat"/>
 
     </LinearLayout>
 
@@ -119,26 +126,16 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/MoveToForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#00FFFFFF"
-                android:text="@string/forgot_password"
-                android:padding="0dp"
-                android:textColor="#7AC313"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
                 android:id="@+id/MoveToRegister"
-                android:onClick="onClickMoveToRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="-15dp"
-                android:background="#00FFFFFF"
+                android:background="@color/transparent"
+                android:onClick="onClickMoveToRegister"
                 android:padding="0dp"
                 android:text="@string/register"
-                android:textColor="#7AC313"
+                android:textColor="@color/green"
+                android:fontFamily="@font/montserrat"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

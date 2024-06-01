@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="67dp"
-        android:background="#2AB655"
+        android:background="@color/green"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,30 +20,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/BackButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:background="#00FFFFFF"
-                android:hint="@string/back"
-                android:foreground="@drawable/left_arrow_white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/TakePhoto"
-                android:layout_width="181dp"
+                android:layout_width="wrap_content"
                 android:layout_height="38dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/take_photo"
                 android:textColor="@color/white"
                 android:textSize="25sp"
+                android:fontFamily="@font/montserrat"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/BackButton"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -72,15 +61,17 @@
             android:id="@+id/ButtonAnalyze"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#2AB655"
-            android:text="Analyze" />
+            android:backgroundTint="@color/green"
+            android:text="@string/analyze"
+            android:fontFamily="@font/montserrat"/>
 
         <Button
             android:id="@+id/ButtonGallery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#2AB655"
-            android:text="Open Gallery" />
+            android:backgroundTint="@color/green"
+            android:text="@string/open_gallery"
+            android:fontFamily="@font/montserrat"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

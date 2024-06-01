@@ -1,27 +1,30 @@
 <resources>
     <string name="app_name">FreshMeter</string>
-    <string name="freshmeter">FreshMeter</string>
-    <string name="books">Books</string>
+    <string name="freshmeter" translatable="false">FreshMeter</string>
+    <string name="articles">Articles</string>
     <string name="more">More</string>
-    <string name="log_in">Log In</string>
-    <string name="johndoe_exemple_com">Johndoe@exemple.com</string>
+    <string name="johndoe_exemple_com" translatable="false">Johndoe@example.com</string>
     <string name="login">Login</string>
-    <string name="email">Email</string>
-    <string name="paassword">Paassword</string>
+    <string name="email" translatable="false">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="register">Register</string>
     <string name="re_enter_password">Re-Enter Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="already_have_account">Already Have Account?</string>
-    <string name="get_started">Get Started</string>
-    <string name="camera">camera</string>
+    <string name="get_started" translatable="false">Get Started</string>
+    <string name="camera" translatable="false">camera</string>
     <string name="take_photo">Take Photo</string>
-    <string name="back">Back</string>
+    <string name="back" translatable="false">Back</string>
     <string name="log_out">Log Out</string>
     <string name="username">Username</string>
     <string name="edit_photo">Edit Photo</string>
     <string name="profile">Profile</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="analyze">Analyze</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="change_language">Change Language</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="splash_screen" translatable="false">splash_screen</string>
+    <string name="article_title" translatable="false">Article Title</string>
 </resources>
