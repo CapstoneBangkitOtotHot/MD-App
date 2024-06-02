@@ -27,4 +27,6 @@
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="splash_screen" translatable="false">splash_screen</string>
     <string name="article_title" translatable="false">Article Title</string>
+    <string name="result">Result\n</string>
+    <string name="more_info">More Info\n</string>
 </resources>
