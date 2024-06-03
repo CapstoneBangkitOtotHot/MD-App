@@ -1,65 +1,59 @@
 package com.cwb.freshmeter.ui.profile
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.cwb.freshmeter.R
 import com.cwb.freshmeter.databinding.ActivityProfileBinding
+import com.cwb.freshmeter.ui.login.AuthRepository
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
-
+    private lateinit var email: String
     private val pref by lazy { PrefHelper(this) }
 
     private fun saveImageUri(uri: Uri?) {
-        val sharedPref = getSharedPreferences("pref_profile", Context.MODE_PRIVATE)
-        with (sharedPref.edit()) {
-            putString("profile_image_uri", uri?.toString())
-            apply()
-        }
+        uri?.toString()?.let { pref.putString("profile_image_uri", it, email) }
     }
+
     private fun loadImageUri(): Uri? {
-        val sharedPref = getSharedPreferences("pref_profile", Context.MODE_PRIVATE)
-        val uriString = sharedPref.getString("profile_image_uri", null)
+        val uriString = pref.getString("profile_image_uri", email)
         return if (uriString != null) Uri.parse(uriString) else null
     }
+
     private fun saveEditTextValue(value: String) {
-        val sharedPref = getSharedPreferences("pref_username", Context.MODE_PRIVATE)
-        with (sharedPref.edit()) {
-            putString("edit_text_value", value)
-            apply()
-        }
+        pref.putString("edit_text_value", value, email)
     }
 
     private fun loadEditTextValue(): String? {
-        val sharedPref = getSharedPreferences("pref_username", Context.MODE_PRIVATE)
-        return sharedPref.getString("edit_text_value", "") // Default empty string
+        return pref.getString("edit_text_value", email)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        email = intent.getStringExtra("user_email") ?: "default@example.com"
+
         val switchMaterial = findViewById<SwitchMaterial>(R.id.switch_material)
+        switchMaterial.isChecked = pref.getBoolean("pref_is_dark_mode", email)
 
-        switchMaterial.isChecked = pref.getBoolean("pref_is_dark_mode")
-
-        switchMaterial.setOnCheckedChangeListener { buttonView, isChecked ->
+        switchMaterial.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                pref.put("pref_is_dark_mode", true)
+                pref.putBoolean("pref_is_dark_mode", true, email)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
-            else {
-                pref.put("pref_is_dark_mode", false)
+            } else {
+                pref.putBoolean("pref_is_dark_mode", false, email)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
@@ -69,11 +63,11 @@ class ProfileActivity : AppCompatActivity() {
             binding.setProfilePhoto.setImageURI(savedUri)
         }
 
-        binding.EditPhotoButton.setOnClickListener{
+        binding.EditPhotoButton.setOnClickListener {
             ImagePicker.with(this)
-                .crop()	    			//Crop image(Optional), Check Customization for more option
-                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .crop()
+                .compress(1024)
+                .maxResultSize(1080, 1080)
                 .start()
         }
 
@@ -81,6 +75,10 @@ class ProfileActivity : AppCompatActivity() {
         binding.EditUsername.setText(savedUsername)
 
         setupAction()
+
+        binding.LogOutButton.setOnClickListener {
+            showLogoutConfirmationDialog()
+        }
     }
 
     private fun setupAction() {
@@ -89,6 +87,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("This method has been deprecated in favor of using the Activity Result API\n      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt\n      contracts for common intents available in\n      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for\n      testing, and allow receiving results in separate, testable classes independent from your\n      activity. Use\n      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}\n      with the appropriate {@link ActivityResultContract} and handling the result in the\n      {@link ActivityResultCallback#onActivityResult(Object) callback}.")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         binding.setProfilePhoto.setImageURI(data?.data)
@@ -106,5 +105,19 @@ class ProfileActivity : AppCompatActivity() {
         super.onStop()
         val currentText = binding.EditUsername.text.toString()
         saveEditTextValue(currentText)
+    }
+
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Logout")
+        builder.setMessage("Are you sure you want to logout?")
+        builder.setPositiveButton("Yes") { dialog, _ ->
+            AuthRepository.logout(this)
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.create().show()
     }
 }
