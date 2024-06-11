@@ -1,5 +1,6 @@
 package com.cwb.freshmeter.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -13,6 +14,7 @@ import com.cwb.freshmeter.ui.login.LoginActivity
 import com.cwb.freshmeter.R
 import com.cwb.freshmeter.ui.main.MainActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

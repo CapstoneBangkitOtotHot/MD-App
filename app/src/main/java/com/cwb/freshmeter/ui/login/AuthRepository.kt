@@ -8,8 +8,9 @@ import com.cwb.freshmeter.api.RefreshTokenRequest
 import com.cwb.freshmeter.api.RetrofitClient
 import com.cwb.freshmeter.api.TokenData
 import com.cwb.freshmeter.ui.main.MainActivity
-import com.cwb.freshmeter.ui.profile.ProfileActivity
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
@@ -67,6 +68,28 @@ object AuthRepository {
     }
 
     fun logout(context: Context) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitClient.apiService.logout()
+                if (response.status == "ok") {
+                    withContext(Dispatchers.Main) {
+                        clearSession(context)
+                        navigateToLogin(context)
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "Logout failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun clearSession(context: Context) {
         val sharedPreferences = context.getSharedPreferences("auth", Context.MODE_PRIVATE)
         with(sharedPreferences.edit()) {
             remove("session_token")
@@ -74,7 +97,9 @@ object AuthRepository {
             remove("user_email")
             apply()
         }
+    }
 
+    private fun navigateToLogin(context: Context) {
         val intent = Intent(context, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         context.startActivity(intent)

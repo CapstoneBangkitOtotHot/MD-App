@@ -19,4 +19,6 @@
     <string name="analyze">Analisa</string>
     <string name="dark_mode">Mode Gelap</string>
     <string name="change_language">Ganti Bahasa</string>
+    <string name="enter_registered_email">Masukkan Email Terdaftar</string>
+    <string name="send_code">Kirim</string>
 </resources>

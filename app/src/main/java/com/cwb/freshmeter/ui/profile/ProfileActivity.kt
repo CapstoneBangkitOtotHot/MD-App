@@ -5,16 +5,23 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.cwb.freshmeter.R
+import com.cwb.freshmeter.api.RetrofitClient
 import com.cwb.freshmeter.databinding.ActivityProfileBinding
 import com.cwb.freshmeter.ui.login.AuthRepository
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.switchmaterial.SwitchMaterial
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
+@Suppress("DEPRECATION")
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
@@ -60,10 +67,10 @@ class ProfileActivity : AppCompatActivity() {
 
         val savedUri = loadImageUri()
         if (savedUri != null) {
-            binding.setProfilePhoto.setImageURI(savedUri)
+            binding.sivProfilePicture.setImageURI(savedUri)
         }
 
-        binding.EditPhotoButton.setOnClickListener {
+        binding.btnEditPhoto.setOnClickListener {
             ImagePicker.with(this)
                 .crop()
                 .compress(1024)
@@ -72,17 +79,23 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         val savedUsername = loadEditTextValue()
-        binding.EditUsername.setText(savedUsername)
+        binding.etEditUsername.setText(savedUsername)
 
         setupAction()
 
-        binding.LogOutButton.setOnClickListener {
+        binding.btnLogout.setOnClickListener {
             showLogoutConfirmationDialog()
         }
     }
 
+    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
     private fun setupAction() {
-        binding.settingImageView.setOnClickListener {
+        binding.ivSetLanguage.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
     }
@@ -90,20 +103,24 @@ class ProfileActivity : AppCompatActivity() {
     @Deprecated("This method has been deprecated in favor of using the Activity Result API\n      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt\n      contracts for common intents available in\n      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for\n      testing, and allow receiving results in separate, testable classes independent from your\n      activity. Use\n      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}\n      with the appropriate {@link ActivityResultContract} and handling the result in the\n      {@link ActivityResultCallback#onActivityResult(Object) callback}.")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        binding.setProfilePhoto.setImageURI(data?.data)
-        if (resultCode == Activity.RESULT_OK) {
-            binding.setProfilePhoto.setImageURI(data?.data)
-            saveImageUri(data?.data)
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+        binding.sivProfilePicture.setImageURI(data?.data)
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                binding.sivProfilePicture.setImageURI(data?.data)
+                saveImageUri(data?.data)
+            }
+            ImagePicker.RESULT_ERROR -> {
+                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     override fun onStop() {
         super.onStop()
-        val currentText = binding.EditUsername.text.toString()
+        val currentText = binding.etEditUsername.text.toString()
         saveEditTextValue(currentText)
     }
 
@@ -112,7 +129,28 @@ class ProfileActivity : AppCompatActivity() {
         builder.setTitle("Logout")
         builder.setMessage("Are you sure you want to logout?")
         builder.setPositiveButton("Yes") { dialog, _ ->
-            AuthRepository.logout(this)
+            binding.progressBar.visibility = View.VISIBLE
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = RetrofitClient.apiService.logout()
+                    if (response.status == "ok") {
+                        withContext(Dispatchers.Main) {
+                            binding.progressBar.visibility = View.GONE
+                            AuthRepository.logout(this@ProfileActivity)
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(this@ProfileActivity, "Logout failed", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(this@ProfileActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
             dialog.dismiss()
         }
         builder.setNegativeButton("No") { dialog, _ ->

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraActivity">
+    tools:context=".ui.camera.CameraActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/TakePhoto"
+                android:id="@+id/et_takePhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_marginStart="16dp"
@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageViewGallery"
+        android:id="@+id/iv_photo"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="24dp"
@@ -55,10 +55,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewGallery">
+        app:layout_constraintTop_toBottomOf="@+id/iv_photo">
 
         <Button
-            android:id="@+id/ButtonAnalyze"
+            android:id="@+id/btn_analyze"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green"
@@ -66,7 +66,7 @@
             android:fontFamily="@font/montserrat"/>
 
         <Button
-            android:id="@+id/ButtonGallery"
+            android:id="@+id/btn_chooseImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green"

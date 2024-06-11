@@ -3,22 +3,19 @@ package com.cwb.freshmeter.ui.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cwb.freshmeter.CameraActivity
+import com.cwb.freshmeter.ui.camera.CameraActivity
 import com.cwb.freshmeter.R
+import com.cwb.freshmeter.databinding.ActivityMainBinding
 import com.cwb.freshmeter.ui.profile.PrefHelper
 import com.cwb.freshmeter.ui.profile.ProfileActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var moveToCameraButton: Button
-    private lateinit var moveToProfileButton: Button
-
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: ActivityMainBinding
     private lateinit var articlesList: ArrayList<Articles>
     private lateinit var articlesAdapter: ArticlesAdapter
 
@@ -27,7 +24,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Retrieve the current user's email from shared preferences
         val sharedPreferences = getSharedPreferences("auth", Context.MODE_PRIVATE)
@@ -39,11 +37,8 @@ class MainActivity : AppCompatActivity() {
             false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
-        moveToCameraButton = findViewById(R.id.camera)
-        moveToProfileButton = findViewById(R.id.ProfileButton)
-
-        moveToCameraButton.setOnClickListener { onClickMoveToCamera() }
-        moveToProfileButton.setOnClickListener { onClickMoveToProfile() }
+        binding.camera.setOnClickListener { onClickMoveToCamera() }
+        binding.ProfileButton.setOnClickListener { onClickMoveToProfile() }
 
         init()
     }
@@ -51,24 +46,25 @@ class MainActivity : AppCompatActivity() {
     private fun onClickMoveToCamera() {
         val intent = Intent(this, CameraActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun onClickMoveToProfile() {
         val intent = Intent(this, ProfileActivity::class.java)
         intent.putExtra("user_email", email)
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun init() {
-        recyclerView = findViewById(R.id.rv_articles)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        binding.rvArticles.setHasFixedSize(true)
+        binding.rvArticles.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         articlesList = ArrayList()
 
         addDataToList()
 
         articlesAdapter = ArticlesAdapter(articlesList, this)
-        recyclerView.adapter = articlesAdapter
+        binding.rvArticles.adapter = articlesAdapter
     }
 
     private fun addDataToList() {

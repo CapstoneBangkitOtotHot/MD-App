@@ -13,6 +13,12 @@ interface ApiService {
 
     @POST("register")
     fun registerUser(@Body request: RegisterRequest): Call<RegisterResponse>
+
+    @POST("send-password-reset-email")
+    suspend fun forgotPassword(@Body request: ForgotPasswordRequest): ForgotPasswordResponse
+
+    @POST("logout")
+    suspend fun logout(): LogoutResponse
 }
 
 data class LoginRequest(val email: String, val password: String)
@@ -28,3 +34,9 @@ data class RegisterRequest(
     val email: String,
     val password: String
 )
+
+data class ForgotPasswordRequest(val email: String)
+
+data class ForgotPasswordResponse(val status: String, val message: String)
+
+data class LogoutResponse(val status: String)

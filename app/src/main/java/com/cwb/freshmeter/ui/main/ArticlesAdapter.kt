@@ -1,5 +1,6 @@
 package com.cwb.freshmeter.ui.main
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -18,24 +19,28 @@ class ArticlesAdapter(private val articlesList : List<Articles>, private val con
             val articlesTitleTv: TextView = itemView.findViewById(R.id.article_title)
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticlesViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.articles_item, parent,false)
-        return ArticlesViewHolder(view)
-    }
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticlesViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.articles_item, parent,false)
+            return ArticlesViewHolder(view)
+        }
 
-    override fun getItemCount(): Int {
-        return articlesList.size
-    }
+        override fun getItemCount(): Int {
+            return articlesList.size
+        }
 
-    override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
-        val articles = articlesList[position]
-        holder.articlesImageView.setImageResource(articles.articlesImage)
-        holder.articlesTitleTv.text = articles.articlesTitle
+        override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
+            val articles = articlesList[position]
+            holder.articlesImageView.setImageResource(articles.articlesImage)
+            holder.articlesTitleTv.text = articles.articlesTitle
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, WebViewActivity::class.java)
                 intent.putExtra("articleUrl", articles.link) // Assuming you want to open link1 by default
                 context.startActivity(intent)
+
+                if (context is Activity) {
+                    context.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                }
             }
         }
-    }
+}
