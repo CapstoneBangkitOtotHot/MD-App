@@ -4,6 +4,7 @@ Completed:
 3. Dark Theme
 4. Change Language
 5. RecyclerView for article
+6. CameraActivity and ResultAcivity
 
 On Progress:
-1. CameraActivity and ResultAcivity
+1. Showing the freshness result
