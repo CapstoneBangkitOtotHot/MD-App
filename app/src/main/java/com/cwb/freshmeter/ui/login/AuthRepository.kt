@@ -2,6 +2,7 @@ package com.cwb.freshmeter.ui.login
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import com.cwb.freshmeter.api.LoginRequest
 import com.cwb.freshmeter.api.RefreshTokenRequest
@@ -106,38 +107,33 @@ object AuthRepository {
     }
 
     suspend fun refreshSessionToken(context: Context) {
-        try {
-            val sharedPreferences = context.getSharedPreferences("auth", Context.MODE_PRIVATE)
-            val refreshToken = sharedPreferences.getString("refresh_token", null)
+        val sharedPreferences = context.getSharedPreferences("auth", Context.MODE_PRIVATE)
+        val refreshToken = sharedPreferences.getString("refresh_token", null)
 
-            if (refreshToken != null) {
-                val response = RetrofitClient.apiService.refreshToken(RefreshTokenRequest(refreshToken))
+        if (refreshToken != null) {
+            try {
+                val refreshTokenRequest = RefreshTokenRequest(refreshToken)
+                Log.d("AuthRepository", "Refreshing token with request: $refreshTokenRequest")
+
+                val response = RetrofitClient.apiService.refreshToken(refreshTokenRequest)
                 if (response.status == "ok") {
-                    withContext(Dispatchers.Main) {
-                        with(sharedPreferences.edit()) {
-                            putString("session_token", response.data.session_token)
-                            apply()
-                        }
-                        Toast.makeText(context, "Session token refreshed", Toast.LENGTH_SHORT).show()
+                    with(sharedPreferences.edit()) {
+                        putString("session_token", response.data.session_token)
+                        apply()
                     }
+                    Log.d("AuthRepository", "Session token refreshed successfully")
                 } else {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(context, "Failed to refresh session token", Toast.LENGTH_SHORT).show()
-                    }
+                    Log.d("AuthRepository", "Failed to refresh session token: ${response.status}")
                 }
-            } else {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "No refresh token found", Toast.LENGTH_SHORT).show()
-                }
+            } catch (e: HttpException) {
+                Log.e("AuthRepository", "HTTP error during token refresh: ${e.code()}", e)
+            } catch (e: IOException) {
+                Log.e("AuthRepository", "Network error during token refresh", e)
+            } catch (e: Exception) {
+                Log.e("AuthRepository", "Unexpected error during token refresh", e)
             }
-        } catch (e: IOException) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, "Network error: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-        } catch (e: Exception) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, "An unexpected error occurred", Toast.LENGTH_SHORT).show()
-            }
+        } else {
+            Log.d("AuthRepository", "No refresh token found")
         }
     }
 }

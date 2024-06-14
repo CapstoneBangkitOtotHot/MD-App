@@ -56,4 +56,6 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:3.10.0")
 
     implementation("com.github.dhaval2404:imagepicker:2.1")
+
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
 }
