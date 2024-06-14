@@ -31,4 +31,5 @@
     <string name="more_info" translatable="false">More Info\n</string>
     <string name="enter_registered_email">Enter Registered Email</string>
     <string name="send_code">Send</string>
+    <string name="available_to_scan">Available to Scan</string>
 </resources>

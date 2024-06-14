@@ -1,5 +1,6 @@
 package com.cwb.freshmeter.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,6 +10,7 @@ import com.cwb.freshmeter.api.RegisterRequest
 import com.cwb.freshmeter.api.RegisterResponse
 import com.cwb.freshmeter.api.RetrofitClient
 import com.cwb.freshmeter.databinding.ActivityRegisterBinding
+import com.cwb.freshmeter.ui.login.LoginActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,7 +34,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.etPasswordRegister.setMinLength(8)
     }
 
-    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
+    @Deprecated("This method has been deprecated...")
     override fun onBackPressed() {
         super.onBackPressed()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -80,6 +82,11 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this@RegisterActivity, "Email already registered", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(this@RegisterActivity, registerResponse?.message ?: "Registration successful", Toast.LENGTH_SHORT).show()
+                            // Move to LoginActivity and finish RegisterActivity
+                            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                            finish()
                         }
                     } else {
                         Toast.makeText(this@RegisterActivity, "Registration failed", Toast.LENGTH_SHORT).show()
@@ -87,6 +94,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(this@RegisterActivity, t.message ?: "Registration failed", Toast.LENGTH_SHORT).show()
                 }
             })

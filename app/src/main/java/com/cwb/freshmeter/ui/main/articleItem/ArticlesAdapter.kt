@@ -1,4 +1,4 @@
-package com.cwb.freshmeter.ui.main
+package com.cwb.freshmeter.ui.main.articleItem
 
 import android.app.Activity
 import android.content.Context
@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cwb.freshmeter.R
+import com.cwb.freshmeter.ui.main.WebViewActivity
 
 class ArticlesAdapter(private val articlesList : List<Articles>, private val context:Context) :
     RecyclerView.Adapter<ArticlesAdapter.ArticlesViewHolder>() {

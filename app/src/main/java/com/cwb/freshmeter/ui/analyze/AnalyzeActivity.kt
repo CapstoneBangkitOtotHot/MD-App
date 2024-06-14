@@ -2,10 +2,7 @@ package com.cwb.freshmeter.ui.analyze
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.cwb.freshmeter.R
 import com.cwb.freshmeter.databinding.ActivityAnalyzeBinding
 
@@ -16,15 +13,8 @@ class AnalyzeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityAnalyzeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         // Get the image URI from the intent and display it
         val imageUri = intent.getStringExtra("imageUri")?.let { Uri.parse(it) }

@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object RetrofitClient {
-    private const val BASE_URL = "https://api.bangkit-c241-ps005.site/auth/"
+    private const val BASE_URL = "https://api.bangkit-c241-ps005.site/"
 
     private val client = OkHttpClient.Builder()
         .addInterceptor(AuthInterceptor(MyApp.context))

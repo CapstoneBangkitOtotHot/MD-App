@@ -5,19 +5,19 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("login")
+    @POST("auth/login")
     suspend fun login(@Body loginRequest: LoginRequest): ApiResponse
 
-    @POST("refresh")
+    @POST("auth/refresh")
     suspend fun refreshToken(@Body refreshTokenRequest: RefreshTokenRequest): ApiResponse
 
-    @POST("register")
+    @POST("auth/register")
     fun registerUser(@Body request: RegisterRequest): Call<RegisterResponse>
 
-    @POST("send-password-reset-email")
+    @POST("auth/send-password-reset-email")
     suspend fun forgotPassword(@Body request: ForgotPasswordRequest): ForgotPasswordResponse
 
-    @POST("logout")
+    @POST("auth/logout")
     suspend fun logout(): LogoutResponse
 }
 
