@@ -61,6 +61,10 @@ object AuthRepository {
             putString("user_email", email)
             apply()
         }
+
+        // rebuild client
+        RetrofitClient.rebuild_client(data.session_token)
+
         Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
 
         val intent = Intent(context, MainActivity::class.java)
@@ -121,6 +125,9 @@ object AuthRepository {
                         putString("session_token", response.data.session_token)
                         apply()
                     }
+                    // rebuild client
+                    RetrofitClient.rebuild_client(response.data.session_token)
+
                     Log.d("AuthRepository", "Session token refreshed successfully")
                 } else {
                     Log.d("AuthRepository", "Failed to refresh session token: ${response.status}")
