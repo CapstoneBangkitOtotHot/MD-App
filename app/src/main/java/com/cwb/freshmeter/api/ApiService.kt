@@ -19,6 +19,9 @@ interface ApiService {
 
     @POST("auth/logout")
     suspend fun logout(): LogoutResponse
+
+    @POST("auth/change-password")
+    suspend fun changePassword(@Body request: ChangePasswordRequest): ChangePasswordResponse
 }
 
 data class LoginRequest(val email: String, val password: String)
@@ -30,3 +33,5 @@ data class RegisterRequest(val email: String, val password: String)
 data class ForgotPasswordRequest(val email: String)
 data class ForgotPasswordResponse(val status: String, val message: String)
 data class LogoutResponse(val status: String)
+data class ChangePasswordRequest(val old_password: String, val new_password: String)
+data class ChangePasswordResponse(val status: String, val message: String)

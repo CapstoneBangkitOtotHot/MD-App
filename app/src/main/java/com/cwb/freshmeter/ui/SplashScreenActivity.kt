@@ -9,9 +9,11 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cwb.freshmeter.ui.login.LoginActivity
 import com.cwb.freshmeter.R
+import com.cwb.freshmeter.ui.login.AuthRepository
 import com.cwb.freshmeter.ui.main.MainActivity
 
 @SuppressLint("CustomSplashScreen")
@@ -35,10 +37,17 @@ class SplashScreenActivity : AppCompatActivity() {
         val sessionToken = sharedPreferences.getString("session_token", null)
 
         if (sessionToken != null) {
-            // Session token exists, navigate to MainActivity
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            // Check if the session token is expired
+            val isExpired = AuthRepository.isTokenExpired(sessionToken)
+            if (isExpired) {
+                // Token is expired, show popup and navigate to LoginActivity
+                showTokenExpiredPopup()
+            } else {
+                // Token is valid, navigate to MainActivity
+                val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         } else {
             // No session token, navigate to LoginActivity after a delay
             setTransition()
@@ -51,5 +60,18 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, 3000L) // Delay 3 seconds
+    }
+
+    private fun showTokenExpiredPopup() {
+        AlertDialog.Builder(this)
+            .setTitle("Session Expired")
+            .setMessage("Your session has expired. Please log in again.")
+            .setPositiveButton("OK") { _, _ ->
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
+            .setCancelable(false)
+            .show()
     }
 }

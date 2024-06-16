@@ -22,4 +22,14 @@
     <string name="enter_registered_email">Masukkan Email Terdaftar</string>
     <string name="send_code">Kirim</string>
     <string name="available_to_scan">Bisa untuk Dipindai</string>
+
+    <string name="article_1_title">Manfaat Buah dan Sayuran</string>
+    <string name="article_1_url">https://krakataumedika.com/info-media/artikel/manfaat-buah-dan-sayuran-untuk-kesehatan</string>
+    <string name="article_2_title">Mengelola Buah dan Sayur</string>
+    <string name="article_2_url">https://www.rskariadi.co.id/news/102/MENGOLAH-BUAH-DAN-SAYUR-DENGAN-BENAR/Artikel</string>
+    <string name="article_3_title">Rekomendasi Masakan</string>
+    <string name="article_3_url">https://www.fimela.com/food/read/5039289/10-resep-masakan-sayur-enak-dan-praktis-cocok-untuk-menu-sehari-hari?page=4</string>
+    <string name="scan_1">Apel</string>
+    <string name="scan_2">Mangga</string>
+    <string name="scan_3">Sawo</string>
 </resources>

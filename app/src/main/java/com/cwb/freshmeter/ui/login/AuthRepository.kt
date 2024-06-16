@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import com.auth0.android.jwt.JWT
 import com.cwb.freshmeter.api.LoginRequest
 import com.cwb.freshmeter.api.RefreshTokenRequest
 import com.cwb.freshmeter.api.RetrofitClient
@@ -134,6 +135,16 @@ object AuthRepository {
             }
         } else {
             Log.d("AuthRepository", "No refresh token found")
+        }
+    }
+
+    fun isTokenExpired(token: String): Boolean {
+        return try {
+            val jwt = JWT(token)
+            val isExpired = jwt.isExpired(10) // 10 seconds leeway to account for clock skew
+            isExpired
+        } catch (e: Exception) {
+            true // Treat any decoding error as expired token
         }
     }
 }

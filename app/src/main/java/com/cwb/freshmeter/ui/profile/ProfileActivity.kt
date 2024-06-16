@@ -5,7 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +17,7 @@ import com.cwb.freshmeter.R
 import com.cwb.freshmeter.api.RetrofitClient
 import com.cwb.freshmeter.databinding.ActivityProfileBinding
 import com.cwb.freshmeter.ui.login.AuthRepository
+import com.cwb.freshmeter.ui.changePassword.ChangePasswordActivity
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.switchmaterial.SwitchMaterial
 import kotlinx.coroutines.CoroutineScope
@@ -88,6 +92,21 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.profile_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_reset_password -> {
+                startActivity(Intent(this, ChangePasswordActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
     override fun onBackPressed() {
         super.onBackPressed()
@@ -157,5 +176,21 @@ class ProfileActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         builder.create().show()
+    }
+
+    fun showPopupMenu(view: View) {
+        val popupMenu = PopupMenu(this, view)
+        popupMenu.menuInflater.inflate(R.menu.profile_menu, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_reset_password -> {
+                    startActivity(Intent(this, ChangePasswordActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    true
+                }
+                else -> false
+            }
+        }
+        popupMenu.show()
     }
 }

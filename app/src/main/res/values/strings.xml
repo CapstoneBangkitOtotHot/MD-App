@@ -32,4 +32,21 @@
     <string name="enter_registered_email">Enter Registered Email</string>
     <string name="send_code">Send</string>
     <string name="available_to_scan">Available to Scan</string>
+
+    <string name="article_1_title">Benefits of Fruits and Vegetables</string>
+    <string name="article_1_url">https://krakataumedika.com/info-media/artikel/manfaat-buah-dan-sayuran-untuk-kesehatan</string>
+    <string name="article_2_title">Managing Fruits and Vegetables</string>
+    <string name="article_2_url">https://www.rskariadi.co.id/news/102/MENGOLAH-BUAH-DAN-SAYUR-DENGAN-BENAR/Artikel</string>
+    <string name="article_3_title">Recipe Recommendations</string>
+    <string name="article_3_url">https://www.fimela.com/food/read/5039289/10-resep-masakan-sayur-enak-dan-praktis-cocok-untuk-menu-sehari-hari?page=4</string>
+    <string name="scan_1">Apple</string>
+    <string name="scan_2">Mango</string>
+    <string name="scan_3">Sapodilla</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="your_old_password">Your Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="your_new_password">Your New Password</string>
+    <string name="change">Change</string>
+    <string name="menu">Menu</string>
 </resources>

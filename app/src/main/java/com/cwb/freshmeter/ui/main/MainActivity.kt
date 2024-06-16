@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cwb.freshmeter.ui.camera.CameraActivity
 import com.cwb.freshmeter.R
 import com.cwb.freshmeter.databinding.ActivityMainBinding
+import com.cwb.freshmeter.ui.login.MyApp.Companion.context
 import com.cwb.freshmeter.ui.main.articleItem.Articles
 import com.cwb.freshmeter.ui.main.articleItem.ArticlesAdapter
 import com.cwb.freshmeter.ui.main.scanItem.ScanAdapter
@@ -84,15 +85,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        articlesList.add(Articles(R.drawable.article_1, "Manfaat Buah dan Sayuran", "https://krakataumedika.com/info-media/artikel/manfaat-buah-dan-sayuran-untuk-kesehatan"))
-        articlesList.add(Articles(R.drawable.article_2, "Mengelola Buah dan Sayur", "https://www.rskariadi.co.id/news/102/MENGOLAH-BUAH-DAN-SAYUR-DENGAN-BENAR/Artikel"))
-        articlesList.add(Articles(R.drawable.article_3, "Rekomendasi Masakan", "https://www.fimela.com/food/read/5039289/10-resep-masakan-sayur-enak-dan-praktis-cocok-untuk-menu-sehari-hari?page=4"))
+        val resources = context.resources
+        articlesList.add(Articles(R.drawable.article_1, resources.getString(R.string.article_1_title), resources.getString(R.string.article_1_url)))
+        articlesList.add(Articles(R.drawable.article_2, resources.getString(R.string.article_2_title), resources.getString(R.string.article_2_url)))
+        articlesList.add(Articles(R.drawable.article_3, resources.getString(R.string.article_3_title), resources.getString(R.string.article_3_url)))
     }
 
     private fun addScanDataToList() {
-        scanList.add(ScanItem(R.drawable.scan_1, "Item 1"))
-        scanList.add(ScanItem(R.drawable.scan_1, "Item 2"))
-        scanList.add(ScanItem(R.drawable.scan_1, "Item 3"))
-        scanList.add(ScanItem(R.drawable.scan_1, "Item 4"))
+        val resources = context.resources
+        scanList.add(ScanItem(R.drawable.item_apple, resources.getString(R.string.scan_1)))
+        scanList.add(ScanItem(R.drawable.item_mango, resources.getString(R.string.scan_2)))
+        scanList.add(ScanItem(R.drawable.item_sapodilla, resources.getString(R.string.scan_3)))
     }
 }
