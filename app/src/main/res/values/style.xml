@@ -6,4 +6,11 @@
     <style name="circular">
         <item name="cornerSize">50%</item>
     </style>
+    <style name="text_common" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 </resources>
