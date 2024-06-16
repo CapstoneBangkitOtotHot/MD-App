@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".ui.login.MyApp"
@@ -14,7 +19,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreshMeter"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
+        <!--        Ijin untuk debug pakai private endpoint pakai net config custom biar allow http-->
+
         <activity
             android:name=".ui.changePassword.ChangePasswordActivity"
             android:exported="false" />

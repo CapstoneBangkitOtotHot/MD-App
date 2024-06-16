@@ -72,7 +72,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
 
         val request = RegisterRequest(email, password)
-        RetrofitClient.instance.registerUser(request)
+        RetrofitClient.apiService.registerUser(request)
             .enqueue(object : Callback<RegisterResponse> {
                 override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                     binding.progressBar.visibility = View.GONE
