@@ -1,8 +1,6 @@
 package com.cwb.freshmeter.api
 
 import android.util.Log
-import com.cwb.freshmeter.ui.login.AuthInterceptor
-import com.cwb.freshmeter.ui.login.MyApp
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -26,7 +24,7 @@ public class RetrofitClient {
 
             apiService = Retrofit.Builder()
                 .client(client)
-                .baseUrl("http://10.9.8.7:5000/")
+                .baseUrl("https://api.bangkit-c241-ps005.site/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ApiService::class.java)

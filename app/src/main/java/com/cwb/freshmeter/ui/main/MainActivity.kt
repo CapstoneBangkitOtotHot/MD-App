@@ -18,6 +18,7 @@ import com.cwb.freshmeter.ui.main.scanItem.ScanAdapter
 import com.cwb.freshmeter.ui.main.scanItem.ScanItem
 import com.cwb.freshmeter.ui.profile.PrefHelper
 import com.cwb.freshmeter.ui.profile.ProfileActivity
+import com.cwb.freshmeter.ui.tutorial.TutorialActivity
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
@@ -49,8 +50,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.fbCamera.setOnClickListener { onClickMoveToCamera() }
         binding.ivProfile.setOnClickListener { onClickMoveToProfile() }
+        binding.btnGetStarted.setOnClickListener {onClickMoveToTutorial() }
 
         init()
+    }
+
+    private fun onClickMoveToTutorial() {
+        val intent = Intent(this, TutorialActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun onClickMoveToCamera() {
@@ -96,5 +104,6 @@ class MainActivity : AppCompatActivity() {
         scanList.add(ScanItem(R.drawable.item_apple, resources.getString(R.string.scan_1)))
         scanList.add(ScanItem(R.drawable.item_mango, resources.getString(R.string.scan_2)))
         scanList.add(ScanItem(R.drawable.item_sapodilla, resources.getString(R.string.scan_3)))
+        scanList.add(ScanItem(R.drawable.item_tomato, resources.getString(R.string.scan_4)))
     }
 }

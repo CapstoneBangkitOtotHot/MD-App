@@ -1,0 +1,22 @@
+package com.cwb.freshmeter.ui.tutorial
+
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.cwb.freshmeter.R
+
+@Suppress("DEPRECATION")
+class TutorialActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_tutorial)
+    }
+
+    @Deprecated("This method has been deprecated...")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+}

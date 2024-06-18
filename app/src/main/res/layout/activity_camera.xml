@@ -46,22 +46,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/gallery" />
 
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_photo">
-
-
-            <androidx.camera.view.PreviewView
-                android:id="@+id/previewView"
-                android:layout_width="250dp"
-                android:layout_height="247dp" />
-        </FrameLayout>
-
-
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -87,6 +71,17 @@
                 android:text="@string/open_gallery"
                 android:fontFamily="@font/montserrat"/>
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.tutorial.TutorialActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/green">
+
+            <TextView
+                android:id="@+id/tv_tutorial"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/take_photo"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:fontFamily="@font/montserrat"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            android:layout_height="wrap_content">
+
+            <!-- Step 1 Image -->
+            <ImageView
+                android:id="@+id/imgStep1"
+                android:layout_width="500dp"
+                android:layout_height="500dp"
+                android:src="@drawable/img_step1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Step 1 Text -->
+            <TextView
+                android:id="@+id/tvStep1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgStep1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/step1"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <!-- Step 2 Image -->
+            <ImageView
+                android:id="@+id/imgStep2"
+                android:layout_width="500dp"
+                android:layout_height="500dp"
+                android:src="@drawable/img_step2"
+                android:layout_below="@id/tvStep1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Step 2 Text -->
+            <TextView
+                android:id="@+id/tvStep2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgStep2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/step2"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <!-- Step 3 Image -->
+            <ImageView
+                android:id="@+id/imgStep3"
+                android:layout_width="500dp"
+                android:layout_height="500dp"
+                android:src="@drawable/img_step3"
+                android:layout_below="@id/tvStep2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Step 3 Text -->
+            <TextView
+                android:id="@+id/tvStep3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgStep3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/step3"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <!-- Step 4 Image -->
+            <ImageView
+                android:id="@+id/imgStep4"
+                android:layout_width="500dp"
+                android:layout_height="500dp"
+                android:src="@drawable/img_step4"
+                android:layout_below="@id/tvStep3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Step 4 Text -->
+            <TextView
+                android:id="@+id/tvStep4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgStep4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/step4"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

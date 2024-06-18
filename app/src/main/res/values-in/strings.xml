@@ -32,4 +32,18 @@
     <string name="scan_1">Apel</string>
     <string name="scan_2">Mangga</string>
     <string name="scan_3">Sawo</string>
+    <string name="scan_4">Tomat</string>
+    <string name="change_password">Ubah Sandi</string>
+    <string name="old_password">Sandi Lama</string>
+    <string name="your_old_password">Sandi Lama Anda</string>
+    <string name="new_password">Sandi Baru</string>
+    <string name="your_new_password">Sandi Baru Anda</string>
+    <string name="change">Ubah</string>
+    <string name="menu">Menu</string>
+    <string name="step1">1. Klik tombol kamera.</string>
+    <string name="step2">2. Klik buka galeri kemudian pilih dari galeri atau ambil foto, setelah itu klik Analisa.</string>
+    <string name="step3">3. Anda bisa melihat hasilnya</string>
+    <string name="step4">4. Klik untuk melihat detil</string>
+    <string name="analyze_result">Hasil Analisa</string>
+    <string name="detail">Detil</string>
 </resources>

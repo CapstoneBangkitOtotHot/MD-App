@@ -1,77 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginVertical="10dp"
-    android:id="@+id/root"
-    >
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="2dp"> <!-- Reduced elevation -->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"> <!-- Reduced padding -->
 
         <ImageView
             android:id="@+id/Detail_inference"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tvFruitClass"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="fill_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/Detail_inference"
-            tools:layout_editor_absoluteX="16dp">
+            android:text="Fruit Class"
+            android:textStyle="bold"
+            android:paddingTop="4dp" /> <!-- Reduced padding -->
 
-            <TextView
-                android:id="@+id/labelPersentaseKesegaran"
-                style="@style/text_common"
-
-                tools:text="Persentase Kesegaran" />
-
-            <TextView
-                android:id="@+id/valPersentaseKesegaran"
-                style="@style/text_common"
-                android:textAlignment="textEnd"
-
-                tools:text="X%" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvFreshnessPercentage"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:gravity="fill_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-            tools:layout_editor_absoluteX="16dp">
-
-            <TextView
-                android:id="@+id/labelHari"
-                style="@style/text_common"
-
-                tools:text="Hari sebelum busuk" />
-
-            <TextView
-                android:id="@+id/valHari"
-                style="@style/text_common"
-                android:textAlignment="textEnd"
-
-                tools:text="X Hari" />
+            android:text="Freshness Percentage"
+            android:paddingTop="2dp" /> <!-- Reduced padding -->
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
-</androidx.cardview.widget.CardView>
+
+

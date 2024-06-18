@@ -2,6 +2,7 @@ package com.cwb.freshmeter.ui.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.cwb.freshmeter.api.RegisterResponse
 import com.cwb.freshmeter.api.RetrofitClient
 import com.cwb.freshmeter.databinding.ActivityRegisterBinding
 import com.cwb.freshmeter.ui.login.LoginActivity
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,13 +91,22 @@ class RegisterActivity : AppCompatActivity() {
                             finish()
                         }
                     } else {
-                        Toast.makeText(this@RegisterActivity, "Registration failed", Toast.LENGTH_SHORT).show()
+                        // Handle non-successful responses by parsing the error body
+                        val errorBody = response.errorBody()?.string()
+                        val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
+                        if (errorResponse?.status == "error" && errorResponse.message == "Failed to register, email is already exists") {
+                            Toast.makeText(this@RegisterActivity, "Email already registered", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this@RegisterActivity, "Registration failed", Toast.LENGTH_SHORT).show()
+                        }
+                        Log.e("RegisterActivity", "Registration failed: $errorBody")
                     }
                 }
 
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(this@RegisterActivity, t.message ?: "Registration failed", Toast.LENGTH_SHORT).show()
+                    Log.e("RegisterActivity", "onFailure: ${t.message}", t)
                 }
             })
     }

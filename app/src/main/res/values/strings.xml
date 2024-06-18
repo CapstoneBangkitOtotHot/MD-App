@@ -42,6 +42,7 @@
     <string name="scan_1">Apple</string>
     <string name="scan_2">Mango</string>
     <string name="scan_3">Sapodilla</string>
+    <string name="scan_4">Tomato</string>
     <string name="change_password">Change Password</string>
     <string name="old_password">Old Password</string>
     <string name="your_old_password">Your Old Password</string>
@@ -49,4 +50,15 @@
     <string name="your_new_password">Your New Password</string>
     <string name="change">Change</string>
     <string name="menu">Menu</string>
+    <string name="step1">1. Tap the camera button.</string>
+    <string name="step2">2. Click open gallery then choose from gallery or take a picture, after that click Analyze.</string>
+    <string name="step3">3. You can see the result</string>
+    <string name="step4">4. Click one of the item to see more detail</string>
+    <string name="analyze_result">Analyze Result</string>
+    <string name="detail">Detail</string>
+    <string name="fruit_class" translatable="false">Fruit Class</string>
+    <string name="confidence" translatable="false">Confidence</string>
+    <string name="freshness_percentage" translatable="false">Freshness Percentage</string>
+    <string name="freshness_days" translatable="false">Freshness Days</string>
+    <string name="tips" translatable="false">Tips</string>
 </resources>
